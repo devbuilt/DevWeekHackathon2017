@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "webcamjs",
+        "scope": null,
+        "escapedName": "webcamjs",
+        "name": "webcamjs",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/agupt13/Documents/workspace/apps/text-to-voice-exp"
+    ]
+  ],
+  "_from": "webcamjs@latest",
+  "_id": "webcamjs@1.0.19",
+  "_inCache": true,
+  "_location": "/webcamjs",
+  "_nodeVersion": "6.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/webcamjs-1.0.19.tgz_1486439626780_0.7005468769930303"
+  },
+  "_npmUser": {
+    "name": "jhuckaby",
+    "email": "jhuckaby@gmail.com"
+  },
+  "_npmVersion": "3.10.8",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "webcamjs",
+    "scope": null,
+    "escapedName": "webcamjs",
+    "name": "webcamjs",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://npme.walmart.com/webcamjs/-/webcamjs-1.0.19.tgz",
+  "_shasum": "c2d32ffb8407a51835bd31b77d3d50208d4be39b",
+  "_shrinkwrap": null,
+  "_spec": "webcamjs",
+  "_where": "/Users/agupt13/Documents/workspace/apps/text-to-voice-exp",
+  "author": {
+    "name": "Joseph Huckaby",
+    "email": "jhuckaby@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jhuckaby/webcamjs/issues"
+  },
+  "dependencies": {},
+  "description": "HTML5 Webcam Image Capture Library with Flash Fallback",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "c2d32ffb8407a51835bd31b77d3d50208d4be39b",
+    "tarball": "http://npme.walmart.com/webcamjs/-/webcamjs-1.0.19.tgz"
+  },
+  "gitHead": "bb8dfc598bb1ca869eeee934f4835061027850a7",
+  "homepage": "https://github.com/jhuckaby/webcamjs",
+  "keywords": [
+    "webcam",
+    "camera",
+    "getusermedia",
+    "flash",
+    "jpegcam"
+  ],
+  "license": "MIT",
+  "main": "webcam.js",
+  "maintainers": [
+    {
+      "name": "jhuckaby",
+      "email": "jhuckaby@gmail.com"
+    }
+  ],
+  "name": "webcamjs",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhuckaby/webcamjs.git"
+  },
+  "scripts": {
+    "build": "./build.sh"
+  },
+  "version": "1.0.19"
+}

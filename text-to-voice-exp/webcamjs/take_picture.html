@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Javascript Webcam Demo - <MyCodingTricks/></title>
+</head>
+<body background="bgimage.jpg">
+
+<h3>Demonstrates simple 320x240 capture &amp; display</h3>
+
+
+
+<div id="my_camera"></div>
+
+
+
+<!-- A button for taking snaps -->
+
+<form>
+    <input type=button class="btn btn-success" value="Take Snapshot" onClick="take_snapshot()">
+
+</form>
+
+<form method="post" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="file">
+    <input type="submit" value="Submit">
+</form>
+
+
+<div id="results" class="well">Your captured image will appear here...</div>
+
+<!-- First, include the Webcam.js JavaScript Library -->
+<script type="text/javascript" src="webcam.min.js"></script>
+
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach( '#my_camera' );
+    function take_snapshot() {
+        // take snapshot and get image data
+        Webcam.snap( function(data_uri) {
+            // display results in page
+            document.getElementById('results').innerHTML =' <h2>Here is your image:</h2>' +'<img src="'+data_uri+'"/>';
+            Webcam.upload( data_uri, 'upload.php', function(code, text) {
+                alert("code", text);
+                // Upload complete!
+                // 'code' will be the HTTP response code from the server, e.g. 200
+                // 'text' will be the raw response content
+            });
+        } );
+    }
+
+    var convertToBase64 = function(url, imagetype, callback){
+
+        var img = document.createElement('IMG'),
+                canvas = document.createElement('CANVAS'),
+                ctx = canvas.getContext('2d'),
+                data = '';
+
+        // Set the crossOrigin property of the image element to 'Anonymous',
+        // allowing us to load images from other domains so long as that domain
+        // has cross-origin headers properly set
+
+        img.crossOrigin = 'Anonymous'
+
+        // Because image loading is asynchronous, we define an event listening function that will be called when the image has been loaded
+        img.onLoad = function(){
+            // When the image is loaded, this function is called with the image object as its context or 'this' value
+            canvas.height = this.height;
+            canvas.width = this.width;
+            ctx.drawImage(this, 0, 0);
+            data = canvas.toDataURL(imagetype);
+            callback(data);
+        };
+
+        // We set the source of the image tag to start loading its data. We define
+        // the event listener first, so that if the image has already been loaded
+        // on the page or is cached the event listener will still fire
+
+        img.src = url;
+    };
+
+    var sendBase64ToServer = function(name, base64){
+        var httpPost = new XMLHttpRequest(),
+                path = "http://127.0.0.1:8000/uploadImage/" + name,
+                data = JSON.stringify({image: base64});
+        httpPost.onreadystatechange = function(err) {
+            if (httpPost.readyState == 4 && httpPost.status == 200){
+                console.log(httpPost.responseText);
+            } else {
+                console.log(err);
+            }
+        };
+        // Set the content type of the request to json since that's what's being sent
+        httpPost.setHeader('Content-Type', 'application/json');
+        httpPost.open("POST", path, true);
+        httpPost.send(data);
+    };
+
+    var uploadImage = function(src, name, type){
+        convertToBase64(src, type, function(data){
+            sendBase64ToServer(name, data);
+        });
+    };
+
+    uploadImage(imgsrc, name, 'image/jpeg')
+
+</script>
+</body>
+</html>
